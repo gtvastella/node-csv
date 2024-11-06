@@ -64,23 +64,48 @@ export function validateData(data: ParsedData[]): Object {
             const isPrestacaoValid = Math.abs(calculatedPrestacao - prestacao) < 0.01;
             const formattedTotal = toBRLCurrency(total);
             const formattedPrestacao = toBRLCurrency(prestacao);
+            const formattedMora = toBRLCurrency(parseFloat(item.vlMora));
+            const formattedMulta = toBRLCurrency(parseFloat(item.vlMulta));
+            const formattedIof = toBRLCurrency(parseFloat(item.vlIof));
+            const formattedDescon = toBRLCurrency(parseFloat(item.vlDescon));
+            const formattedAtual = toBRLCurrency(parseFloat(item.vlAtual));
+            
 
             return {
-                ...item,
-                isCpfValid,
-                isCnpjValid,
-                isPrestacaoValid,
-                formattedTotal,
-                formattedPrestacao,
+                "baseData" : {
+                    ...item,
+                },
+                "validatedData" : {
+                    isCpfValid,
+                    isCnpjValid,
+                    isPrestacaoValid,
+                    formattedTotal,
+                    formattedPrestacao,
+                    formattedMora,
+                    formattedMulta,
+                    formattedIof,
+                    formattedDescon,
+                    formattedAtual,
+                },
             };
-        } catch (error) {
+        } catch (error : any) {
             return {
-                ...item,
-                isCpfValid: false,
-                isCnpjValid: false,
-                isPrestacaoValid: false,
-                formattedTotal: 'R$ 0,00',
-                formattedPrestacao: 'R$ 0,00',
+                "baseData" : {
+                    ...item,
+                },
+                "validatedData" : {
+                    "isCpfValid" : false,
+                    "isCnpjValid" : false,
+                    "isPrestacaoValid" : false,
+                    "formattedTotal" : "error",
+                    "formattedPrestacao" : "error",
+                    "formattedMora" : "error",
+                    "formattedMulta" : "error",
+                    "formattedIof" : "error",
+                    "formattedDescon" : "error",
+                    "formattedAtual" : "error",
+                },
+                "error" : error.message,
             };
         }
 
