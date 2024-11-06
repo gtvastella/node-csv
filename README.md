@@ -14,13 +14,11 @@ Este serviço lê um arquivo CSV chamado `data.csv` e cria um arquivo de saída 
 Clone o repositório para o seu ambiente local.
 
 ```bash
-git clone https://github.com/seu-usuario/projeto-csv.git
-cd projeto-csv
+git clone https://github.com/gtvastella/node-csv
+cd node-csv
 ```
 
 ### 2. Inicializar o serviço
-
-Para Linux/MacOS:
 
 ```bash
 ./start.sh
